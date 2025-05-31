@@ -49,17 +49,19 @@ export function App() {
     setActiveCall(null);
     setActiveScreen('dialer');
   };
-  return <div className={`flex flex-col w-full min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50'}`}>
-      <Header activeScreen={activeScreen} darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
-      <main className="flex-1 flex flex-col items-center p-4 pb-20">
-        {activeScreen === 'dialer' && <Dialer onMakeCall={handleMakeCall} darkMode={darkMode} />}
-        {activeScreen === 'call' && activeCall && <CallScreen call={activeCall} onEndCall={handleEndCall} darkMode={darkMode} />}
-        {activeScreen === 'settings' && <Settings darkMode={darkMode} />}
-        {activeScreen === 'contacts' && <Contacts darkMode={darkMode} />}
-        {activeScreen === 'extensions' && <Extensions darkMode={darkMode} />}
-        {activeScreen === 'history' && <History darkMode={darkMode} />}
-      </main>
-      <Navigation activeScreen={activeScreen} navigateTo={navigateTo} darkMode={darkMode} />
-      {incomingCall && <IncomingCall call={incomingCall} onAccept={handleAcceptCall} onReject={handleRejectCall} darkMode={darkMode} />}
+  return <div className="fixed inset-0 flex items-center justify-center bg-gray-100">
+      <div className={`relative w-full max-w-[375px] h-[667px] overflow-hidden rounded-3xl shadow-2xl ${darkMode ? 'bg-gray-900 text-white' : 'bg-white'}`}>
+        <Header activeScreen={activeScreen} darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
+        <main className="flex-1 h-[calc(100%-128px)] overflow-y-auto">
+          {activeScreen === 'dialer' && <Dialer onMakeCall={handleMakeCall} darkMode={darkMode} />}
+          {activeScreen === 'call' && activeCall && <CallScreen call={activeCall} onEndCall={handleEndCall} darkMode={darkMode} />}
+          {activeScreen === 'settings' && <Settings darkMode={darkMode} />}
+          {activeScreen === 'contacts' && <Contacts darkMode={darkMode} />}
+          {activeScreen === 'extensions' && <Extensions darkMode={darkMode} />}
+          {activeScreen === 'history' && <History darkMode={darkMode} />}
+        </main>
+        <Navigation activeScreen={activeScreen} navigateTo={navigateTo} darkMode={darkMode} />
+        {incomingCall && <IncomingCall call={incomingCall} onAccept={handleAcceptCall} onReject={handleRejectCall} darkMode={darkMode} />}
+      </div>
     </div>;
 }
