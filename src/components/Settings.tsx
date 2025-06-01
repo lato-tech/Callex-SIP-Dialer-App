@@ -79,5 +79,21 @@ export const Settings = ({
           Save Settings
         </button>
       </form>
+      <div className="mt-8 space-y-4">
+        <h3 className="text-lg font-semibold mb-4">About</h3>
+        <a href="https://www.getlato.com" target="_blank" rel="noopener noreferrer" className={`block px-4 py-3 rounded-lg ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'}`}>
+          Visit getlato.com
+        </a>
+        <a href="https://www.getlato.com/support" target="_blank" rel="noopener noreferrer" className={`block px-4 py-3 rounded-lg ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'}`}>
+          Support
+        </a>
+        <a href="https://www.getlato.com/privacy" target="_blank" rel="noopener noreferrer" className={`block px-4 py-3 rounded-lg ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'}`}>
+          Privacy Policy
+        </a>
+        <div className={`text-center mt-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+          <p>Version 1.0.0</p>
+          <p>© 2024 Lato Technologies</p>
+        </div>
+      </div>
     </div>;
 };

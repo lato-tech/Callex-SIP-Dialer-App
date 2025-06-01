@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { PlusIcon, TrashIcon, PhoneIcon, VideoIcon } from 'lucide-react';
+import { PlusIcon, TrashIcon, PhoneIcon, VideoIcon, SearchIcon } from 'lucide-react';
 export const Extensions = ({
   darkMode
 }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [extensions, setExtensions] = useState([{
     id: 1,
     name: 'Main Line',
@@ -20,6 +21,7 @@ export const Extensions = ({
     number: '',
     server: ''
   });
+  const filteredExtensions = extensions.filter(ext => ext.name.toLowerCase().includes(searchQuery.toLowerCase()) || ext.number.includes(searchQuery));
   const handleAddExtension = e => {
     e.preventDefault();
     setExtensions([...extensions, {
@@ -43,8 +45,14 @@ export const Extensions = ({
           <PlusIcon size={20} />
         </button>
       </div>
+      <div className="mb-4">
+        <div className="relative">
+          <input type="text" placeholder="Search extensions..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className={`w-full pl-10 pr-4 py-2 rounded-lg border ${darkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-300'}`} />
+          <SearchIcon size={20} className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`} />
+        </div>
+      </div>
       <div className="space-y-3">
-        {extensions.map(extension => <div key={extension.id} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm p-4`}>
+        {filteredExtensions.map(extension => <div key={extension.id} className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-lg shadow-sm p-4`}>
             <div className="flex justify-between items-start">
               <div className="space-y-1">
                 <h3 className="font-semibold text-base">{extension.name}</h3>

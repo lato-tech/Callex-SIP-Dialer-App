@@ -58,7 +58,7 @@ export function App() {
           {activeScreen === 'settings' && <Settings darkMode={darkMode} />}
           {activeScreen === 'contacts' && <Contacts darkMode={darkMode} />}
           {activeScreen === 'extensions' && <Extensions darkMode={darkMode} />}
-          {activeScreen === 'history' && <History darkMode={darkMode} />}
+          {activeScreen === 'history' && <History darkMode={darkMode} navigateTo={navigateTo} />}
         </main>
         <Navigation activeScreen={activeScreen} navigateTo={navigateTo} darkMode={darkMode} />
         {incomingCall && <IncomingCall call={incomingCall} onAccept={handleAcceptCall} onReject={handleRejectCall} darkMode={darkMode} />}
